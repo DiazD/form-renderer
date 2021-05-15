@@ -103,10 +103,8 @@ const getNextStepFields = (currentStep, steps) => {
 const StepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const fields = getNextStepFields(currentStep, steps);
-  console.log("re-rendering");
-  const onSubmit = ({ data, setSubmittingState }) => {
-    console.log('step form data', data);
 
+  const onSubmit = ({ data, setSubmittingState }) => {
     if (currentStep === 0) {
       // submit logic for step 0
       setSubmittingState(false);
@@ -120,6 +118,7 @@ const StepForm = () => {
       // NOTE: If all logic here goes well then setCurrentStep to next one
       setCurrentStep((step) => step + 1);
     } else if (currentStep === 2) {
+      alert(JSON.stringify(data));
       // submit logic for step 3
       delay(() => setSubmittingState(false), 2000);
     }

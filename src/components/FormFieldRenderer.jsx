@@ -14,7 +14,7 @@ export const RedAsterisk = () => <RedSpan>*</RedSpan>;
 
 const FormFieldsRenderer = ({ fields, overrides = {}, renderers }) => {
   return fields.map((group, idx) =>
-    <renderers.RowRenderer fields={group} id={idx} renderers={renderers} overrides={overrides} />
+    <renderers.RowRenderer key={idx} fields={group} id={idx} renderers={renderers} overrides={overrides} />
   );
 };
 

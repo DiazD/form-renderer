@@ -7,14 +7,13 @@ import { FormRendererContext } from "../../FormRenderer";
 
 const FormControlWrapperRenderer = ({ field }) => {
   const {
-    overrides,
     renderers,
     rendererProps: { FormControlWrapperRenderer: formCtrlWrapperProps },
   } = useContext(FormRendererContext);
   const className = computeClasses("form-control-wrapper", field.name, formCtrlWrapperProps);
   return (
     <FormGroup {...formCtrlWrapperProps} className={className}>
-      <renderers.FormControlRenderer field={field} renderers={renderers} overrides={overrides} />
+      <renderers.FormControlRenderer field={field} />
     </FormGroup>
   );
 };
