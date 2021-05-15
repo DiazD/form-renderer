@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext, useWatch, useFormState } from "react-hook-form";
 import styled from "styled-components/macro";
 
 // components
@@ -19,14 +19,16 @@ const Circle = styled.div`
 // TODO: fix register
 const TemplateTextArea = ({ field }) => {
   const methods = useFormContext();
+  const { errors } = useFormState();
   const message = useWatch({ name: field.name, control: methods.control, defaultValue: "" });
+  const { ref, ...registerProps } = methods.register(field.name, field.rules);
   const textAreaRef = useRef();
 
   return (
     <>
       <div className="d-flex justify-content-between mb-1">
         <span></span>
-        <span className="charCount d-flex">
+        <span className="charCount d-flex align-items-center">
           {message.length <= maxNumChars && message.length > maxNumChars / 2
             ? <Circle $color="yellow" />
             : maxNumChars < message.length
@@ -42,11 +44,12 @@ const TemplateTextArea = ({ field }) => {
             rows: "3",
             name: field.name,
           }}
+          innerRef={ref}
           textAreaRef={textAreaRef}
-          innerRef={(e) => methods.register(e, field.rules)}
+          {...registerProps}
         />
       </InputGroupBorder>
-      <StyledError >{methods.errors[field.name]}</StyledError>
+      <StyledError >{errors[field.name]}</StyledError>
     </>
   );
 };

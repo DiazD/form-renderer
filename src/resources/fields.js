@@ -66,7 +66,7 @@ export const moreDetailFields = [
     {
       name: "phone",
       label: "Phone",
-      component: "phone",
+      component: "input",
       inputProps: { type: "tel" },
       rules: { required: "Required" },
     }
