@@ -52,7 +52,7 @@ const FormRenderer = ({
   onSubmit: submit,
   buttonProps = { name: "Submit", block: false, className: "" },
   formWrapper = null,
-  formId = "",
+  id = "",
   rhfProps = {},
   renderers = {},
   rendererProps = defaultProps,
@@ -72,11 +72,11 @@ const FormRenderer = ({
     });
   };
   const Wrapper = formWrapper ? formWrapper : React.Fragment;
-  console.log("fields", fields);
+
   return (
     <FormProvider {...methods}>
       <FormRendererContext.Provider value={{ renderers, overrides, rendererProps: { ...defaultProps, ...rendererProps } }}>
-        <Form id={formId} onSubmit={methods.handleSubmit(onSubmit)}>
+        <Form id={id} onSubmit={methods.handleSubmit(onSubmit)}>
           <Wrapper>
             <FormFieldsRenderer
               fields={fields}
@@ -125,7 +125,7 @@ FormRenderer.propTypes = {
   /** Custom Styled Wrapper on the form */
   formWrapper: PropTypes.elementType,
   /** Id of the form (used in conjunction with hasRemoteSubmitBtn) */
-  formId: PropTypes.string,
+  id: PropTypes.string,
   /** The renderers used for to display the forms */
   renderers: PropTypes.object.isRequired,
   /** extra props for each renderer */

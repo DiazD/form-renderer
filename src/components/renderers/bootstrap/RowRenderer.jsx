@@ -7,7 +7,6 @@ import { FormRendererContext } from "../../FormRenderer";
 
 const RowRenderer = ({ id, fields }) => {
   const {
-    overrides,
     renderers,
     rendererProps: { ColRenderer: rowProps },
   } = useContext(FormRendererContext);
@@ -22,7 +21,7 @@ const RowRenderer = ({ id, fields }) => {
     <Row {...rowProps} className={className}>
       {
         fields.map((field) => (
-          <renderers.ColRenderer colSize={sizes} field={field} renderers={renderers} overrides={overrides} />
+          <renderers.ColRenderer key={field.name} colSize={sizes} field={field} />
         ))
       }
     </Row>

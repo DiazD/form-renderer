@@ -4,12 +4,12 @@ import React, { useContext } from "react";
 import { computeClasses } from "../utils";
 import { FormRendererContext } from "../../FormRenderer";
 
-const FormControlComponent = ({ field, renderers, overrides, ...formCtrlProps }) => {
+const FormControlComponent = ({ field, renderers, ...formCtrlProps }) => {
   return (
     <div {...formCtrlProps}>
-      <renderers.LabelRenderer field={field} overrides={overrides} />
-      <renderers.InputRenderer field={field} overrides={overrides} />
-      <renderers.ErrorRenderer field={field} overrides={overrides} />
+      <renderers.LabelRenderer field={field} />
+      <renderers.InputRenderer field={field} />
+      <renderers.ErrorRenderer field={field} />
     </div>
   )
 };
@@ -25,9 +25,9 @@ const FormControlRenderer = ({ field }) => {
   const formControlProps = { ...formCtrlProps, className };
 
   return OverrideFieldControl ? (
-    <OverrideFieldControl overrides={overrides} field={field} {...formControlProps} renderers={renderers} />
+    <OverrideFieldControl field={field} {...formControlProps} />
   ) : (
-    <FormControlComponent overrides={overrides} field={field} {...formControlProps} renderers={renderers} />
+    <FormControlComponent field={field} {...formControlProps} renderers={renderers} />
   );
 };
 
