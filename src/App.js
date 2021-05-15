@@ -4,10 +4,11 @@ import styled from "styled-components/macro";
 
 // comopnents
 import StepForm from "./components/form-examples/StepForm";
+import CustomTextField from "./components/form/CustomTextField";
 
 // utils
 import { delay } from "./utils";
-import { loginFields } from "./resources/fields";
+import { loginFields, moreDetailFields } from "./resources/fields";
 import { renderers } from "./components/renderers/bootstrap";
 
 const Wrapper = styled.div`
@@ -23,12 +24,27 @@ function App() {
     alert(JSON.stringify(data));
     delay(() => setSubmittingState(false), 2000);
   };
+
   return (
     <div className="App">
       <header className="App-header">
         <Wrapper>
           <h2>Login Form</h2>
           <FormRenderer renderers={renderers} id="login" fields={loginFields} onSubmit={onSubmit} />
+        </Wrapper>
+        <Wrapper>
+          <h2>More Details</h2>
+          <FormRenderer
+            renderers={renderers}
+            id="more-details"
+            fields={moreDetailFields}
+            onSubmit={onSubmit}
+            overrides={{
+              textarea: {
+                OverrideFieldControl: CustomTextField,
+              }
+            }}
+          />
         </Wrapper>
         <Wrapper>
           <h2>Steps form</h2>

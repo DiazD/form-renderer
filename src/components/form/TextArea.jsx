@@ -4,8 +4,9 @@ import { Input } from "reactstrap";
 export const AutoSizedTextArea = ({
   textAreaRef,
   inputProps,
-  innerRef = () => null,
+  innerRef,
   onChange = () => null,
+  ...props
 }) => {
   const onTextAreaChange = (e) => {
     textAreaRef.current.style.height = `${e.target.scrollHeight}px`;
@@ -16,10 +17,11 @@ export const AutoSizedTextArea = ({
     <Input
       {...inputProps}
       innerRef={(e) => {
-        innerRef(e);
         textAreaRef.current = e;
+        innerRef(e);
       }}
       onChange={onTextAreaChange}
+      {...props}
     />
   );
 };
