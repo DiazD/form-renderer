@@ -21,7 +21,7 @@ const ErrorComponent = ({ field }) => {
   );
 }
 
-const LabelRenderer = ({ field }) => {
+const ErrorRenderer = ({ field }) => {
   const {
     overrides,
     rendererProps: { ErrorRenderer: props },
@@ -37,4 +37,4 @@ const LabelRenderer = ({ field }) => {
   );
 };
 
-export default LabelRenderer;
+export default ErrorRenderer;
