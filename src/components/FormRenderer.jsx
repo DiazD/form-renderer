@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Form } from "reactstrap";
 import { useForm, FormProvider } from "react-hook-form";
 import styled from "styled-components/macro";
 
@@ -76,7 +75,7 @@ const FormRenderer = ({
   return (
     <FormProvider {...methods}>
       <FormRendererContext.Provider value={{ renderers, overrides, rendererProps: { ...defaultProps, ...rendererProps } }}>
-        <Form id={id} onSubmit={methods.handleSubmit(onSubmit)}>
+        <form id={id} onSubmit={methods.handleSubmit(onSubmit)}>
           <Wrapper>
             <FormFieldsRenderer
               fields={fields}
@@ -105,7 +104,7 @@ const FormRenderer = ({
               {buttonProps.name}
             </LoadingButton>
           </ButtonsContainer>
-        </Form>
+        </form>
       </FormRendererContext.Provider>
     </FormProvider>
   );
