@@ -5,6 +5,7 @@ import styled from "styled-components/macro";
 
 import FormFieldsRenderer, { StyledError } from "./FormFieldRenderer";
 import { LoadingButton } from "./Buttons";
+import { renderers as baseRenderers } from "./renderers/default";
 
 export const ButtonsContainer = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ const FormRenderer = ({
   formWrapper = null,
   id = "",
   rhfProps = {},
-  renderers = {},
+  renderers = baseRenderers,
   rendererProps = defaultProps,
 }) => {
   const [submitting, setSubmitting] = useState(false);
@@ -126,7 +127,7 @@ FormRenderer.propTypes = {
   /** Id of the form (used in conjunction with hasRemoteSubmitBtn) */
   id: PropTypes.string,
   /** The renderers used for to display the forms */
-  renderers: PropTypes.object.isRequired,
+  renderers: PropTypes.object,
   /** extra props for each renderer */
   rendererProps: PropTypes.object,
 };

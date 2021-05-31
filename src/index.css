@@ -9844,21 +9844,11 @@ a.text-dark:focus {
   font-weight: 400 !important;
 }
 
-* {
-  font-weight: 400 !important;
-}
-
 body,
 html {
   font-family: "Lato", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
-}
-@media (min-width: 1600px) {
-  body,
-  html {
-    font-size: calc(2px + 11.2px);
-  }
 }
 
 h1,
