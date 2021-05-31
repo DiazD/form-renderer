@@ -16,27 +16,39 @@ const Circle = styled.div`
   background-color: ${props => props.$color};
   margin-right: 0.5em;
 `;
-// TODO: fix register
+
+const MessageCountLabel = ({ field, methods }) => {
+  const message = useWatch({ name: field.name, control: methods.control, defaultValue: "" });
+  return (
+    <div className="d-flex justify-content-between mb-1">
+      <span></span>
+      <span className="charCount d-flex align-items-center">
+        {message.length <= maxNumChars && message.length > maxNumChars / 2
+          ? <Circle $color="yellow" />
+          : maxNumChars < message.length
+            ? <Circle $color="red" />
+            : <Circle $color="green" />}
+        {message.length}/{maxNumChars} Characters
+      </span>
+    </div>
+  );
+};
+
+const Error = ({ field }) => {
+  const { errors } = useFormState();
+  return (
+    <StyledError >{errors[field.name]}</StyledError>
+  );
+}
+
 const TemplateTextArea = ({ field }) => {
   const methods = useFormContext();
-  const { errors } = useFormState();
-  const message = useWatch({ name: field.name, control: methods.control, defaultValue: "" });
   const { ref, ...registerProps } = methods.register(field.name, field.rules);
   const textAreaRef = useRef();
 
   return (
     <>
-      <div className="d-flex justify-content-between mb-1">
-        <span></span>
-        <span className="charCount d-flex align-items-center">
-          {message.length <= maxNumChars && message.length > maxNumChars / 2
-            ? <Circle $color="yellow" />
-            : maxNumChars < message.length
-              ? <Circle $color="red" />
-              : <Circle $color="green" />}
-          {message.length}/{maxNumChars} Characters
-        </span>
-      </div>
+      <MessageCountLabel field={field} methods={methods} />
       <InputGroupBorder border="full">
         <AutoSizedTextArea
           inputProps={{
@@ -49,7 +61,7 @@ const TemplateTextArea = ({ field }) => {
           {...registerProps}
         />
       </InputGroupBorder>
-      <StyledError >{errors[field.name]}</StyledError>
+      <Error field={field} />
     </>
   );
 };
