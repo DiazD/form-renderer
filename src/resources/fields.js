@@ -5,18 +5,14 @@ export const loginFields = [
       label: "Name",
       component: "input",
       rules: { required: "Required", maxLength: { value: 20, message: "too long" } }
-    }
-  ],
-  [
+    },
     {
       name: "email",
       label: "Email",
       component: "input",
       inputProps: { type: "email" },
       rules: { required: "Required" },
-    }
-  ],
-  [
+    },
     {
       name: "password",
       label: "Password",
@@ -24,7 +20,7 @@ export const loginFields = [
       inputProps: { type: "password" },
       rules: { required: "Required" },
     }
-  ]
+  ],
 ];
 
 export const moreDetailFields = [
@@ -48,8 +44,6 @@ export const moreDetailFields = [
       label: "State",
       component: "select",
       inputProps: {
-        // uncomment to test out the hook into the on-change-hook on the select field
-        // onChange: (selection_) => alert(JSON.stringify(selection_)),
         options: [
           { label: "California", value: "CA" },
           { label: "Arizona", value: "AZ" },
@@ -57,7 +51,6 @@ export const moreDetailFields = [
           { label: "Texas", value: "TX" },
           { label: "Illinois", value: "IL" },
         ],
-        clearable: true
       },
       rules: { required: "Required", maxLength: { value: 40, message: "too long" } }
     }
@@ -66,7 +59,7 @@ export const moreDetailFields = [
     {
       name: "phone",
       label: "Phone",
-      component: "input",
+      component: "phone",
       inputProps: { type: "tel" },
       rules: { required: "Required" },
     }
