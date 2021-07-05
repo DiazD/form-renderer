@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm, FormProvider } from "react-hook-form";
 import styled from "styled-components/macro";
+import { Form } from "semantic-ui-react";
 
 import FormFieldsRenderer, { StyledError } from "./FormFieldRenderer";
 import { LoadingButton } from "./Buttons";
@@ -54,6 +55,7 @@ const FormRenderer = ({
   formWrapper = null,
   id = "",
   rhfProps = {},
+  formProps = {},
   renderers = baseRenderers,
   rendererProps = defaultProps,
 }) => {
@@ -76,7 +78,7 @@ const FormRenderer = ({
   return (
     <FormProvider {...methods}>
       <FormRendererContext.Provider value={{ renderers, overrides, rendererProps: { ...defaultProps, ...rendererProps } }}>
-        <form id={id} onSubmit={methods.handleSubmit(onSubmit)}>
+        <renderers.FormRenderer {...formProps} id={id} onSubmit={methods.handleSubmit(onSubmit)}>
           <Wrapper>
             <FormFieldsRenderer
               fields={fields}
@@ -105,7 +107,7 @@ const FormRenderer = ({
               {buttonProps.name}
             </LoadingButton>
           </ButtonsContainer>
-        </form>
+        </renderers.FormRenderer>
       </FormRendererContext.Provider>
     </FormProvider>
   );

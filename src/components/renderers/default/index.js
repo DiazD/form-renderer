@@ -1,3 +1,4 @@
+import FormRenderer from "./FormElementRenderer";
 import RowRenderer from "./RowRenderer";
 import ColRenderer from "./ColRenderer";
 
@@ -8,6 +9,7 @@ import InputRenderer from "./InputRenderer";
 import LabelRenderer from "./LabelRenderer";
 import ErrorRenderer from "./ErrorRenderer";
 
+
 export const renderers = {
   RowRenderer,
   ColRenderer,
@@ -16,4 +18,5 @@ export const renderers = {
   InputRenderer,
   LabelRenderer,
   ErrorRenderer,
+  FormRenderer,
 };

@@ -1,6 +1,8 @@
 import './App.css';
 import FormRenderer from "./components/FormRenderer";
 import styled from "styled-components/macro";
+import "semantic-ui-css/semantic.min.css";
+import { Grid } from "semantic-ui-react";
 
 // comopnents
 import StepForm from "./components/form-examples/StepForm";
@@ -9,6 +11,10 @@ import CustomTextField from "./components/form/CustomTextField";
 // utils
 import { delay } from "./utils";
 import { loginFields, moreDetailFields } from "./resources/fields";
+
+// renderers
+
+import { renderers } from "./components/renderers/semantic";
 
 const Wrapper = styled.div`
   width: 50%;
@@ -49,6 +55,33 @@ function App() {
           <StepForm />
         </Wrapper>
 
+        <Wrapper>
+          <h2>semantic</h2>
+          <FormRenderer
+            id="semantic-ui"
+            fields={[
+              [
+                {
+                  name: "carname",
+                  label: <span style={{ fontWeight: "bolder" }}>Car Name</span>,
+                  component: "input",
+                  inputProps: { placeholder: "name" },
+                  rules: { required: "Required" }
+                },
+                {
+                  name: "make",
+                  label: <span style={{ fontWeight: "bolder" }}>Make</span>,
+                  component: "input",
+                  inputProps: { placeholder: "make" },
+                  rules: {}
+                },
+              ]
+            ]}
+            onSubmit={onSubmit}
+            renderers={renderers}
+            formWrapper={Grid}
+          />
+        </Wrapper>
       </header>
     </div>
   );
